@@ -34,7 +34,9 @@ Clean state management with `react-redux`, data user and cars is handled with Re
 
 ### Rest API
 
-For backend utilities
+* Get data cars from `http://api-resto-auth.herokuapp.com/cars`
+* User login using `https://api-resto-auth.herokuapp.com/api/v1/user/login`, but for
+* User google login with `https://api-resto-auth.herokuapp.com/api/v1/auth/google`
 
 ### React Bootstrap
 
