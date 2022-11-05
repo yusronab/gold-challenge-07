@@ -1,42 +1,29 @@
 import '../styles/App.css';
 import logo from '../assets/logo.svg'
 import LoadingSpinner from './LoadingSpinner';
+import { Link } from 'react-router-dom'
 import { Container, Nav, Navbar, NavDropdown, Offcanvas } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { actionUserLogout } from '../actions/UserAction';
-
-async function currentUser(token) {
-    const response = await fetch("https://api-resto-auth.herokuapp.com/api/v1/user/current", {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${token}`
-        }
-    })
-
-    const data = await response.json()
-
-    return data
-}
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { actionCurrentUser, actionUserLogout } from '../actions/UserAction';
 
 function Navigation() {
-    const [user, setUser] = useState(null)
-
     const currentPath = window.location.pathname
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        const token = localStorage.getItem("token")
-        currentUser(token)
-            .then((data) => {
-                setUser(data)
-            })
-            .catch((err) => console.log(err.message))
-    }, [])
+    const { currentUserData } = useSelector((state) => state.UserReducer)
 
+    const token = localStorage.getItem("token")
+
+    useEffect(() => {
+
+        dispatch(actionCurrentUser(token))
+
+    }, [dispatch, token])
+    
     function handleLogout() {
         dispatch(actionUserLogout())
         navigate("/login")
@@ -45,7 +32,7 @@ function Navigation() {
     return (
         <Navbar key="lg" expand="lg" fixed="top" style={{ background: '#F1F3FF' }}>
             <Container>
-                <Navbar.Brand href="/">bcr</Navbar.Brand>
+                <Link to={"/"} className="navbar-brand">bcr</Link>
                 <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} />
                 <Navbar.Offcanvas
                     id={`offcanvasNavbar-expand-lg`}
@@ -59,8 +46,8 @@ function Navigation() {
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <Nav className="justify-content-end flex-grow-1 pe-3 align-items-center">
-                            <Nav.Link href="/about">About</Nav.Link>
-                            <Nav.Link href="/blog">Blog</Nav.Link>
+                            <Link to="/about" className="nav-link">About</Link>
+                            <Link to="/blog" className="nav-link">Blog</Link>
                             {currentPath === "/" &&
                                 <>
                                     <Nav.Link href="#our-services">Our Services</Nav.Link>
@@ -73,13 +60,13 @@ function Navigation() {
                                 id={`offcanvasNavbarDropdown-expand-lg`}
                                 title={
                                     <div className="user-image">
-                                        {!!user ? (
+                                        {currentUserData ? (
                                             <>
                                                 <img width="50"
                                                     src={logo}
                                                     alt="user img"
                                                 />
-                                                {user.name.charAt(0).toUpperCase() + user.name.slice(1)}
+                                                {currentUserData.name.charAt(0).toUpperCase() + currentUserData.name.slice(1)}
                                             </>
                                         ) : (
                                             <LoadingSpinner />

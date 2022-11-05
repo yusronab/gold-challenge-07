@@ -1,10 +1,10 @@
-import { USER_LOGIN, USER_LOGIN_GOOGLE, USER_LOGOUT } from "../../actions/UserAction";
+import { USER_LOGIN, USER_LOGIN_GOOGLE, USER_LOGOUT, CURRENT_USER } from "../../actions/UserAction";
 
 const initialState = {
     userLoginResult: false,
     userLoginError: false,
     userLoginLoading: false,
-    isLoggedIn: false
+    currentUserData: false
 }
 
 const user = (state = initialState, action) => {
@@ -14,24 +14,23 @@ const user = (state = initialState, action) => {
                 ...state,
                 userLoginResult: action.payload.data,
                 userLoginError: action.payload.errorMessage,
-                userLoginLoading: action.payload.loading,
-                isLoggedIn: action.payload.isLoggedIn
+                userLoginLoading: action.payload.loading
             }
         case USER_LOGIN_GOOGLE:
             return {
                 ...state,
                 userLoginResult: action.payload.data,
                 userLoginError: action.payload.errorMessage,
-                userLoginLoading: action.payload.loading,
-                isLoggedIn: action.payload.isLoggedIn
+                userLoginLoading: action.payload.loading
             }
         case USER_LOGOUT:
+            return initialState
+        case CURRENT_USER:
             return {
                 ...state,
-                userLoginResult: action.payload.data,
+                currentUserData: action.payload.data,
                 userLoginError: action.payload.errorMessage,
-                userLoginLoading: action.payload.loading,
-                isLoggedIn: action.payload.isLoggedIn
+                userLoginLoading: action.payload.loading
             }
         default:
             return state

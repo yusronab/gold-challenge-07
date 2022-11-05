@@ -3,6 +3,7 @@ import axios from "axios"
 export const USER_LOGIN = "USER_LOGIN"
 export const USER_LOGIN_GOOGLE = "USER_LOGIN_GOOGLE"
 export const USER_LOGOUT = "USER_LOGOUT"
+export const CURRENT_USER = "CURRENT_USER"
 
 export const actionUserLogin = (body) => {
     return (dispatch) => {
@@ -11,8 +12,7 @@ export const actionUserLogin = (body) => {
             payload: {
                 loading: true,
                 data: false,
-                errorMessage: false,
-                isLoggedIn: false
+                errorMessage: false
             }
         })
 
@@ -29,8 +29,7 @@ export const actionUserLogin = (body) => {
                     payload: {
                         loading: false,
                         data: response.data,
-                        errorMessage: false,
-                        isLoggedIn: true
+                        errorMessage: false
                     }
                 })
             })
@@ -40,8 +39,7 @@ export const actionUserLogin = (body) => {
                     payload: {
                         loading: false,
                         data: false,
-                        errorMessage: err.response.data.message,
-                        isLoggedIn: false
+                        errorMessage: err.response.data.message
                     }
                 })
             })
@@ -55,8 +53,7 @@ export const actionUserLoginWithGoogle = (token) => {
             payload: {
                 loading: true,
                 data: false,
-                errorMessage: false,
-                isLoggedIn: false
+                errorMessage: false
             }
         })
 
@@ -73,8 +70,7 @@ export const actionUserLoginWithGoogle = (token) => {
                     payload: {
                         loading: false,
                         data: response.data,
-                        errorMessage: false,
-                        isLoggedIn: true
+                        errorMessage: false
                     }
                 })
             })
@@ -84,8 +80,7 @@ export const actionUserLoginWithGoogle = (token) => {
                     payload: {
                         loading: false,
                         data: false,
-                        errorMessage: err.response.data.message,
-                        isLoggedIn: false
+                        errorMessage: err.response.data.message
                     }
                 })
             })
@@ -100,9 +95,50 @@ export const actionUserLogout = () => {
             payload: {
                 loading: false,
                 data: false,
-                errorMessage: false,
-                isLoggedIn: false
+                errorMessage: false
             }
         })
+    }
+}
+
+export const actionCurrentUser = (token) => {
+    return (dispatch) => {
+        dispatch({
+            type: CURRENT_USER,
+            payload: {
+                loading: false,
+                data: false,
+                errorMessage: false
+            }
+        })
+
+        axios({
+            method: 'GET',
+            url: 'https://api-resto-auth.herokuapp.com/api/v1/user/current',
+            timeout: 120000,
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+            .then((response) => {
+                dispatch({
+                    type: CURRENT_USER,
+                    payload: {
+                        loading: false,
+                        data: response.data,
+                        errorMessage: false
+                    }
+                })
+            })
+            .catch((err) => {
+                dispatch({
+                    type: CURRENT_USER,
+                    payload: {
+                        loading: false,
+                        data: false,
+                        errorMessage: err.message
+                    }
+                })
+            })
     }
 }

@@ -39,6 +39,7 @@ function Login() {
 
             return () => clearTimeout(timer)
         }
+        
         const isTokenExist = localStorage.getItem("token")
         
         if (isTokenExist) {

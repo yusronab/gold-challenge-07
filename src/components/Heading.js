@@ -1,4 +1,5 @@
 import carImage from '../assets/cars.png'
+import { Link } from 'react-router-dom' 
 import { Container, Row, Col } from 'react-bootstrap'
 
 function Heading() {
@@ -12,7 +13,7 @@ function Heading() {
                         <p>Selamat datang di Binar Car Rental. Kami menyediakan mobil kualitas terbaik dengan harga
                             terjangkau. Selalu siap melayani kebutuhanmu untuk sewa mobil selama 24 jam.
                         </p>
-                        <a href="/blog" className="btn btn-success">Mulai Sewa Mobil</a>
+                        <Link to={"/blog"} className="btn btn-success">Mulai Sewa Mobil</Link>
                     </Col>
                     <Col md="6" style={{ zIndex: 1 }}>
                         <img src={carImage} alt="car img" className="w-100" />
