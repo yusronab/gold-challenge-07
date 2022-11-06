@@ -8,6 +8,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import logo from '../assets/logo.svg'
 import { useDispatch, useSelector } from "react-redux";
 import { actionUserLogin, actionUserLoginWithGoogle } from "../actions/UserAction";
+import ParticlesLogin from "../components/ParticlesLogin";
 
 function Login() {
     const [email, setEmail] = useState("")
@@ -58,6 +59,7 @@ function Login() {
 
     return (
         <div className="App-header">
+            <ParticlesLogin />
             <img width="100" src={logo} alt="react img" />
             {userLoginError ? (
                 <Alert show={alert} variant="danger" className="fs-6">{userLoginError}</Alert>
