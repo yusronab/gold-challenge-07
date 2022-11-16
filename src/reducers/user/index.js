@@ -1,6 +1,6 @@
 import { USER_LOGIN, USER_LOGIN_GOOGLE, USER_LOGOUT, CURRENT_USER } from "../../actions/UserAction";
 
-const initialState = {
+export const initialState = {
     userLoginResult: false,
     userLoginError: false,
     userLoginLoading: false,

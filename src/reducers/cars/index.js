@@ -1,6 +1,6 @@
 import { GET_LIST_CARS, FILTERED_CARS, GET_DETAIL_CAR } from '../../actions/CarsAction'
 
-const initialState = {
+export const initialState = {
     getListCarsResult: false,
     getListCarsLoading: false,
     getListCarsError: false,
