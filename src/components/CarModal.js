@@ -1,4 +1,3 @@
-import CurrencyFormat from 'react-currency-format';
 import LoadingSpinner from './LoadingSpinner';
 import { Modal, Col, Row, } from "react-bootstrap";
 import { useSelector } from "react-redux";
@@ -37,7 +36,7 @@ function CarModal(props) {
                                     <Row className="d-flex align-items-center justify-content-center">
                                         <Col md="4"><p className="text-muted">Harga Sewa:</p></Col>
                                         <Col md="8">
-                                            <p className="text-end fw-bold fs-5 text-danger"><CurrencyFormat value={car.rentPerDay} displayType={'text'} thousandSeparator={true} prefix={'Rp'} /> / hari</p>
+                                            <p className="text-end fw-bold fs-5 text-danger">Rp{car.rentPerDay} / hari</p>
                                         </Col>
                                     </Row>
                                     <Row className="d-flex align-items-center justify-content-center">
