@@ -1,10 +1,9 @@
+import NotFound from '../pages/NotFound'
+import cars, { initialState as carState } from '../reducers/cars'
+import user, { initialState as userState } from '../reducers/user'
 import { render, screen } from '@testing-library/react';
-import NotFound from './pages/NotFound'
-import Protected from './components/Protected';
-import { listCars, filter } from './dataDummy'
-import cars, { initialState as carState } from './reducers/cars'
-import user, { initialState as userState } from './reducers/user'
-import { GET_LIST_CARS, FILTERED_CARS, GET_DETAIL_CAR } from './actions/CarsAction'
+import { listCars, filter } from '../dataDummy'
+import { GET_LIST_CARS, FILTERED_CARS, GET_DETAIL_CAR } from '../actions/CarsAction'
 
 describe("pages test", () => {
   it('renders not-found page', () => {
@@ -68,8 +67,17 @@ describe("reducer user test", () => {
   })
 })
 
-// describe("component test", () => {
-//   it('should checking token value', () => {
-//     expect()
-//   })
-// })
+describe("token test", () => {
+  const key = 'token';
+  const value = { token: 'json data' };
+  it('should set data into local storage', () => {
+    window.localStorage.setItem(key, JSON.stringify(value));
+    expect(localStorage.getItem(key)).toEqual(
+      JSON.stringify(value)
+    )
+  })
+})
+
+afterEach(() => {
+  window.localStorage.clear();
+});
