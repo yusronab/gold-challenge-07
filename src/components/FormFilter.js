@@ -29,7 +29,7 @@ export default function FormFilter() {
         dispatch(getFilteredCar({ driver: driverValue, date: dateValue, capacity: capacityValue }))
     }
 
-    const handleReset = (e) => {
+    const handleReset = () => {
         setDriver("")
         setDate("")
         setTime("")
@@ -72,7 +72,7 @@ export default function FormFilter() {
                         </Col>
                         <Col>
                             <button type="submit" className="btn btn-success w-100">Cari Mobil</button>
-                            <button type="reset" onClick={(e) => handleReset(e)} className=" btn btn-outline-danger w-100 mt-3">Clear</button>
+                            <button type="reset" onClick={() => handleReset()} className=" btn btn-outline-danger w-100 mt-3">Clear</button>
                         </Col>
                     </Row>
                 </Form>
