@@ -18,7 +18,7 @@ export const actionUserLogin = (body) => {
 
         axios({
             method: 'POST',
-            url: 'https://api-resto-auth.herokuapp.com/api/v1/user/login',
+            url: 'http://localhost:8010/v1/user/login',
             timeout: 120000,
             data: body
         })
@@ -114,7 +114,7 @@ export const actionCurrentUser = (token) => {
 
         axios({
             method: 'GET',
-            url: 'https://api-resto-auth.herokuapp.com/api/v1/user/current',
+            url: 'http://localhost:8010/v1/user/current',
             timeout: 120000,
             headers: {
                 "Authorization": `Bearer ${token}`

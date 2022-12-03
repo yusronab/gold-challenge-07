@@ -13,6 +13,7 @@ import { createStore, compose, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk';
 import reducers from './reducers';
+import Register from './pages/Register';
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)))
 
@@ -40,6 +41,7 @@ root.render(
             </Protected>
           } />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

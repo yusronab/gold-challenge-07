@@ -15,14 +15,14 @@ function Navigation() {
     const dispatch = useDispatch()
 
     const { currentUserData } = useSelector((state) => state.UserReducer)
+    console.log("nav =", currentUserData)
+    // const token = localStorage.getItem("token")
 
-    const token = localStorage.getItem("token")
+    // useEffect(() => {
 
-    useEffect(() => {
+    //     dispatch(actionCurrentUser(token))
 
-        dispatch(actionCurrentUser(token))
-
-    }, [dispatch, token])
+    // }, [dispatch, token])
     
     function handleLogout() {
         dispatch(actionUserLogout())

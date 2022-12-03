@@ -1,22 +1,30 @@
-import Navigation from '../components/Navigation'
-import Heading from '../components/Heading';
-import SectionService from '../components/SectionService';
-import SectionWhyUs from '../components/SectionWhyUs';
-import SectionTesti from '../components/SectionTesti';
-import SectionFAQ from '../components/SectionFAQ'
-import Footer from '../components/Footer';
+import LoadingSpinner from '../components/LoadingSpinner';
+import HomeAdmin from './HomeAdmin';
+import HomeUser from './HomeUser';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { actionCurrentUser } from '../actions/UserAction';
 
 function App() {
+  const dispatch = useDispatch()
+
+  const token = localStorage.getItem("token")
+
+  const { currentUserData } = useSelector((state) => state.UserReducer)
+
+  useEffect(() => {
+
+    dispatch(actionCurrentUser(token))
+
+  }, [dispatch, token])
+
   return (
     <div className="home-page">
-      <Navigation />
-      <Heading />
-      <SectionService />
-      <SectionWhyUs />
-      <SectionTesti />
-      <SectionFAQ />
-      <Footer />
-    </div>
+      {currentUserData ? (
+        currentUserData.role === "member" ?
+        <HomeUser /> : <HomeAdmin />
+      ) : <LoadingSpinner />}
+    </div >
   );
 }
 
