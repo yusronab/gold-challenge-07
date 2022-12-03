@@ -1,5 +1,5 @@
-import '../styles/App.css'
-import imgService from '../assets/img_service.png'
+import './home.css'
+import imgService from '../../assets/img_service.png'
 
 export default function SectionService() {
     return (

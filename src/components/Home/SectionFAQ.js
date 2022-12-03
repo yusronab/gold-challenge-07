@@ -1,4 +1,4 @@
-import '../styles/App.css'
+import './home.css'
 import { Accordion, Card } from 'react-bootstrap'
 
 export default function SectionFAQ() {

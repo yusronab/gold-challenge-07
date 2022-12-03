@@ -1,6 +1,6 @@
 import '../styles/App.css';
 import Navigation from '../components/Navigation'
-import Heading from '../components/Heading';
+import Heading from '../components/Home/Heading';
 import FormFilter from '../components/FormFilter';
 import ResultFilter from '../components/ResultFilter'
 

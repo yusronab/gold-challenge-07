@@ -1,10 +1,10 @@
 import Navigation from '../components/Navigation'
-import Heading from '../components/Heading';
-import SectionService from '../components/SectionService';
-import SectionWhyUs from '../components/SectionWhyUs';
-import SectionTesti from '../components/SectionTesti';
-import SectionFAQ from '../components/SectionFAQ'
-import Footer from '../components/Footer';
+import Heading from '../components/Home/Heading';
+import SectionService from '../components/Home/SectionService';
+import SectionWhyUs from '../components/Home/SectionWhyUs';
+import SectionTesti from '../components/Home/SectionTesti';
+import SectionFAQ from '../components/Home/SectionFAQ'
+import Footer from '../components/Home/Footer';
 
 export default function HomeUser() {
     return (

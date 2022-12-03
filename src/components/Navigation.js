@@ -4,9 +4,8 @@ import LoadingSpinner from './LoadingSpinner';
 import { Link } from 'react-router-dom'
 import { Container, Nav, Navbar, NavDropdown, Offcanvas } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { actionCurrentUser, actionUserLogout } from '../actions/UserAction';
+import { actionUserLogout } from '../actions/UserAction';
 
 function Navigation() {
     const currentPath = window.location.pathname
@@ -15,14 +14,6 @@ function Navigation() {
     const dispatch = useDispatch()
 
     const { currentUserData } = useSelector((state) => state.UserReducer)
-    console.log("nav =", currentUserData)
-    // const token = localStorage.getItem("token")
-
-    // useEffect(() => {
-
-    //     dispatch(actionCurrentUser(token))
-
-    // }, [dispatch, token])
     
     function handleLogout() {
         dispatch(actionUserLogout())

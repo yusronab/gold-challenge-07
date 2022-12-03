@@ -1,4 +1,4 @@
-import carImage from '../assets/cars.png'
+import carImage from '../../assets/cars.png'
 import { Link } from 'react-router-dom' 
 import { Container, Row, Col } from 'react-bootstrap'
 

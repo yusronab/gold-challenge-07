@@ -1,4 +1,4 @@
-import '../styles/App.css'
+import './home.css'
 import { Carousel, Container, Card, Row, Col } from 'react-bootstrap'
 import { useState } from 'react';
 
